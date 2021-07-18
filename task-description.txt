@@ -1,0 +1,57 @@
+Technical Thinking
+Introduction
+This challenge is to discover how you think, break down problems, and construct or organise your software
+development. You can take as long as you need, however, we expect this challenge to take around 90 minutes to
+complete.
+Please refrain from using previous solutions from the Internet – if we recognise the solution then you will fail the
+challenge.
+
+Problem Description and Scope
+As a stadium owner I need to place customers as close to the seat(s) they request and with a booking group
+sitting together on the same row, however there should be a one seat gap between groups to accommodate
+COVID rules.
+
+Bookings are processed from a FIFO queue and processed independently. Valid bookings are between 1 and 5
+seats, if more than 5 seats then reject the booking.
+Bookings are accepted if they are valid, within the space of the stadium and can be accommodated in the rules. If
+there are no seats left on the row they booked then reject the booking.
+
+Note, the booking request states their preferred seats, if their chosen seats are unavailable then book the nearest
+available seats. I.e. if seat G30 is the preferred L-H seat and the booking is for 4 seats then the booking would be
+for G30,G31,G32,G33. If G32 and G33 are booked then look to see if G34-G39 are empty as this would allow a
+seat gap either side of G35-G38.
+
+The stadium has 20 rows of 100 seats on each row.
+Please use this as an opportunity to demonstrate best practice and your preferred coding style.
+
+Part 1. The function and simple output
+Develop a component that can read from the FIFO queue and process the requests. When the queue is empty
+print out an array of the seating and provide summary information that includes the number of bookings and
+number seats still available.
+E.g. Where ‘X’ is a booked seat, and ‘-‘ is an empty seat. (This is an example, it is up to you how to display
+booked and empty seats)
+-----XXXX---------------------
+--------XXXXX-----------------
+------------------------------
+------------------------XXXX--
+------------------------------
+------------------------------
+-----------XXXX---------------
+------------------------------
+------------------------------
+Groups Booked: x, Seats Booked: y, Remaining: xx, Groups Rejected: z
+Use the attached test data (put the data into a file and read it). DO NOT change the order or text of the test data.
+Booking Data Layout
+Booking Number, Booking-Name, Booking-Size, Preferred-LH-Seat
+1234, Whyte, 4, A04
+Save the output of this to a file.
+
+Part 2. Additional rules
+After completing the challenge for the above ‘covid rules’, try out a couple of different variations to the rules. I.e.
+group sizes bigger than 5, or two seat gaps rather than one seat gaps. Save the outputs you generate (from your
+chosen variations) to files.
+
+Part 3. Front End Development
+Develop a web page that displays the seats that are already booked and allows a used to choose their seats
+according to the ‘covid rules’. Don’t worry about payment or other concerns. Store the new booking and display it
+next time.
