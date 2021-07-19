@@ -4,7 +4,7 @@ const createAvailableSeat = () => {
   for (let i = 0; i < 20; i++) {
     const getAlphabet = (i + 10).toString(36).toUpperCase();
     for (let j = 0; j < 100; j++) {
-      const has0 = j < 10 ? `0${j + 1}` : j + 1;
+      const has0 = j < 9 ? `0${j + 1}` : j + 1;
       availableSeats.push(`${getAlphabet}${has0}`);
     }
   }

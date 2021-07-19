@@ -24,7 +24,7 @@
 
           <label for="bookingSize">Tickets Quantity</label>
 
-          <select>
+          <select id="bookingSize">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -32,16 +32,16 @@
             <option value="5">5</option>
           </select>
 
-          <button onclick="addNewSeat()">Submit</button>
+          <button onclick="addNewSeat()" type="button">Submit</button>
         </form>
       </div>
     </div>
 
-    <div class="table"></div>
     <div class="groups"></div>
     <div class="seats"></div>
     <div class="remaining"></div>
     <div class="rejected"></div>
+    <div class="table"></div>
   </body>
 
   <!-- <script src="testing.js"></script> -->
@@ -67,9 +67,9 @@
 
   .overlay {
     display: none;
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
+    position: fixed;
+    width: 100%;
+    height: 100%;
     z-index: 1;
     background: rgba(0, 0, 0, 0.5);
     top: 0;
