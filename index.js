@@ -14,13 +14,16 @@ const createAvailableSeat = () => {
 let availableSeatList = createAvailableSeat();
 let reservedSeats = [];
 let rejectedBookings = [];
+let isGroupBooked = [];
+let isSeatBooked = [];
 
 // ===========================
 const processBooking = (booking) => {
   const NEXT_SEAT = 1;
+  const MAX_ROW_SIZE = 100;
 
   if (
-    booking.preferredSeat.slice(1) > 100 ||
+    booking.preferredSeat.slice(1) > MAX_ROW_SIZE ||
     booking.bookingSize < 1 ||
     booking.bookingSize > 5
   ) {
@@ -52,8 +55,9 @@ const processBooking = (booking) => {
 
 const isSeatAlreadyReserved = (booking) => {
   let isSeatReserved = false;
+  const SEAT_GAP = 2;
 
-  for (let index = 0; index < booking.bookingSize + 2; index++) {
+  for (let index = 0; index < booking.bookingSize + SEAT_GAP; index++) {
     if (
       reservedSeats.filter((reservedSeat) => {
         return reservedSeat === changePreferredSeat(booking, index);
@@ -98,6 +102,10 @@ const createNewSeatReservation = (booking) => {
   reservedSeats.push(`${booking.preferredSeat}`.replace(/\n.*$/gi, ""));
   reservedSeats.sort();
   console.log(`${booking.preferredSeat}:${booking.bookingName}`);
+
+  booking.bookingSize > 2
+    ? isGroupBooked.push("Groups")
+    : isSeatBooked.push("Seat");
 
   if (booking.bookingSize > 0) reservationNextSeats(booking);
   removeSeatInAvailableSeatList(booking.preferredSeat);
@@ -1650,10 +1658,10 @@ const proccessAllBookings = () => {
   for (const key in bookings) {
     if (Object.hasOwnProperty.call(bookings, key)) {
       const booking = bookings[key];
-      if (booking.preferredSeat.startsWith("A")) {
-        processBooking(booking);
-      }
-      // processBooking(booking);
+      // if (booking.preferredSeat.startsWith("A")) {
+      //   processBooking(booking);
+      // }
+      processBooking(booking);
     }
   }
 
