@@ -36,17 +36,46 @@ function generateGrid(ROWS, COLUMNS) {
       if (booked) {
         row.insertAdjacentHTML(
           "beforeend",
-          `<div class="column" style="color: red">${seat}</div>`
+          `<div class="column" style="color: red; cursor: not-allowed">${seat}</div>`
         );
       } else {
         row.insertAdjacentHTML(
           "beforeend",
-          `<div class="column">${seat}</div>`
+          `<div class="column" data-seat="${seat}" onclick="openModal('${seat}')">${seat}</div>`
         );
       }
     }
   });
 }
+
+const addNewSeat = (getSeatNumber) => {
+  
+  // processBooking(
+  //   {
+  //     bookingNumber: 1,
+  //     bookingName: booking,
+  //     bookingSize: bookingSize.value(),
+  //     preferredSeat: getSeatNumber,
+  //   },
+  // )
+}
+
+const openModal = (getSeatNumber) => {
+  document.querySelector('.modal').style.display = 'block';
+  document.querySelector('.overlay').style.display = 'block';
+  document.querySelector('#selectedSeat').textContent = getSeatNumber;
+  closeModal();
+}
+
+
+const closeModal = () => {
+  document.querySelector('.overlay').addEventListener('click', function(e) {
+    e.preventDefault;
+    e.target.style.display = 'none';
+    document.querySelector('.modal').style.display = 'none';
+  })
+}
+
 
 const checkBooked = (seat) => {
   for (const isBooked of reservedSeats) {
